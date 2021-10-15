@@ -6,11 +6,12 @@
 
 These sensors are combined temperature and humidity sensors with different accuracy.
 
-SI7006 addr: 0x40, device_id 0x06
+```SI7006 addr: 0x40, device_id 0x06
 SI7013 addr: 0x41, device_id 0x0D
 SI7020 addr: 0x40, device_id 0x14
 SI7021 addr: 0x40, device_id 0x15
 HTU21D is the same as SI7021
+```
 
 Documentation is available at
 * [Silicon Lab Hardware] https://www.silabs.com/sensors/humidity/si7006-13-20-21-34
