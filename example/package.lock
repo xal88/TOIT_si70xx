@@ -1,0 +1,5 @@
+prefixes:
+  si70xx: ..
+packages:
+  ..:
+    path: ..

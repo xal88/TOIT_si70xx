@@ -1,6 +1,6 @@
 # SI70xx
 
-**A low level TOIT driver for the Silabs Si70xx/HTU21D  sensor family.**
+A low level TOIT driver for the Silabs Si70xx/HTU21D sensor family.
 
 [ derived and based on the work from https://github.com/toitware/toit-si7006/ ]
 
@@ -24,20 +24,20 @@ A simple usage example.
 ``` toit
 import gpio
 import serial.protocols.i2c as i2c
-import .si70xx show *
+import si70xx show *
 import math
 
 main:
   sda := gpio.Pin 21
   scl := gpio.Pin 22
   bus := i2c.Bus --sda=sda --scl=scl --frequency=100_000
-  i2c_device := bus.device Si70xx.I2C_ADDRESS_40
+  i2c_device := bus.device Si70xx.I2C_ADDRESS
   sensor := Si70xx i2c_device
 
   print "Device Type: $sensor.device_type"
   print "Firmware: $sensor.firmware"
   print "SerialNr#: $sensor.serial_number"
-  
+
   print "Temperature: $(%0.1f sensor.temperature)C"
   print "Humidity: $(sensor.humidity.round)%"
 ```
