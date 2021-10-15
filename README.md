@@ -6,7 +6,8 @@
 
 These sensors are combined temperature and humidity sensors with different accuracy.
 
-```SI7006 addr: 0x40, device_id 0x06
+```
+SI7006 addr: 0x40, device_id 0x06
 SI7013 addr: 0x41, device_id 0x0D
 SI7020 addr: 0x40, device_id 0x14
 SI7021 addr: 0x40, device_id 0x15
