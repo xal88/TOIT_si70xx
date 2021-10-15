@@ -1,4 +1,4 @@
-# SI7006
+# SI70xx
 
 **A low level TOIT driver for the Silabs Si70xx/HTU21D  sensor family.**
 
