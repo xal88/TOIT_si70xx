@@ -1,0 +1,13 @@
+# filename: si7021_example.yaml
+
+# This app specification file executes the 'SI7021 sensor example' app on install
+# and subsequently every 300 seconds.
+#  toit doctor fix  ( to update all.. )
+#  toit deploy si7021.yaml -d devicename
+
+name: SI70xx sensor example
+entrypoint: si7021_example.toit
+triggers:
+  on_install: true
+  on_boot: true
+  on_interval: 30s
