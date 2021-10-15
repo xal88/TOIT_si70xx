@@ -1,6 +1,7 @@
 # SI7006
 
-** A low level TOIT driver for the Silabs Si70xx/HTU21D  sensor family.**
+**A low level TOIT driver for the Silabs Si70xx/HTU21D  sensor family.**
+
 [ derived and based on the work from https://github.com/toitware/toit-si7006/ ]
 
 These sensors are combined temperature and humidity sensors with different accuracy.
