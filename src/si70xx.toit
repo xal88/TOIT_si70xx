@@ -4,21 +4,19 @@ import serial.protocols.i2c as i2c
 import gpio
 
 /**
-Driver for Si70xx Family and the HTU21D Humidity and Temperature Sensor
-SI7006 addr: 0x40, device_id 0x06
-SI7013 addr: 0x41, device_id 0x0D
-SI7020 addr: 0x40, device_id 0x14
-SI7021 addr: 0x40, device_id 0x15
-HTU21D is the same as SI7021
+Driver for Si70xx Family and the HTU21D Humidity and Temperature Sensor.
 */
 
 class Si70xx:
   device_ /i2c.Device
-  static I2C_ADDRESS_40 ::= 0x40
-  static I2C_ADDRESS_41 ::= 0x41
+
+  /** The default I2C address for the Si70xx/HTU21D sensor family. */
+  static I2C_ADDRESS ::= 0x40
+  /** The alternate I2C address for the Si70xx/HTU21D sensor family. */
+  static I2C_ADDRESS_ALT ::= 0x41
 
   constructor .device_:
-  
+
   static DEVICE_TYPE_ ::= {
     0x06 : "Si7006",
     0x13 : "Si7013",
@@ -26,7 +24,7 @@ class Si70xx:
     0x15 : "Si7021",
     0x22 : "Si7034",
   }
-  
+
   static FIRMWARE_VERSIONS_ ::= {
     0xff : "Version 1.0",
     0x20 : "Version 2.0",
@@ -49,7 +47,7 @@ class Si70xx:
       --if_present=:
         fw = FIRMWARE_VERSIONS_[bytes[0]]
     return fw
-    
+
   /**
   A 64 bit serial number for the sensor.  It is an error if the sensor has a
     serial number that indicates it is not an Si70xx sensor.
@@ -68,8 +66,8 @@ class Si70xx:
     check_crc_ bytes2 [0, 1, 3, 4] 5
     DEVICE_TYPE_.get bytes2[0]
       --if_absent=:
-        throw "Not a supported model type: 0x$(%02x bytes2[0])"
-    
+        throw "Unsupported model type: 0x$(%02x bytes2[0])"
+
     return "$(%016x (bytes1[0] << 56 | bytes1[2] << 48 | bytes1[4] << 40 | bytes1[6] << 32
                    | bytes2[0] << 24 | bytes2[1] << 16 | bytes2[3] << 8 | bytes2[4]) )"
 
@@ -84,7 +82,7 @@ class Si70xx:
         type = "Unknown model type: 0x$(%02x bytes[0])"
       --if_present=:
         type = DEVICE_TYPE_[bytes[0]]
-    
+
     return type
 
   static check_crc_ bytes/ByteArray offsets/List expected/int:
